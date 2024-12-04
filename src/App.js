@@ -1,10 +1,10 @@
 import React from 'react'
-import Context from './context/Context'
-
+//import Context from './context/Context'
+import Page from './contextExp/Page'
 function App() {
   return (
     <div>
-       <Context/>
+       <Page/>
     </div>
   )
 }
