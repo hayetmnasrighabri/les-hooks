@@ -1,12 +1,15 @@
 import React from 'react'
-//import Context from './context/Context'
-import Page from './contextExp/Page'
-function App() {
+import ThemeProvider from './contextExp2/ThemeContext'
+import Header from './contextExp2/Header'
+import Login from './contextExp2/Login'
+import ToggleTheme from './contextExp2/ToggleTheme'
+ function App() {
   return (
-    <div>
-       <Page/>
-    </div>
+    <ThemeProvider>
+      <Header/>
+      <ToggleTheme/>
+      <Login/>
+    </ThemeProvider>
   )
 }
-
 export default App
