@@ -1,15 +1,19 @@
-import React from 'react'
-import ThemeProvider from './contextExp2/ThemeContext'
-import Header from './contextExp2/Header'
-import Login from './contextExp2/Login'
-import ToggleTheme from './contextExp2/ToggleTheme'
- function App() {
+import React, { useState } from 'react'
+import Blog from './contextExp3/Blog'
+import {LocalContext} from './contextExp3/LocalContext'
+function App() {
+  const [locale, setLocale] = useState('en')
+  const toggleLocale=()=>{
+    setLocale((locale)=>{
+      return(
+      locale==='en'? 'ar': 'en'
+    )})
+  }
   return (
-    <ThemeProvider>
-      <Header/>
-      <ToggleTheme/>
-      <Login/>
-    </ThemeProvider>
+    <LocalContext.Provider value={{locale, toggleLocale}}>
+      <Blog/>
+    </LocalContext.Provider>
   )
 }
+
 export default App
