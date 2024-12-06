@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
-import Blog from './contextExp3/Blog'
-import {LocalContext} from './contextExp3/LocalContext'
+import React, { createContext, useState } from 'react'
+import Sidebar from './components/Sidebar'
+import Widget from './components/Widget'
+
+export const ProductContext=createContext()
 function App() {
-  const [locale, setLocale] = useState('en')
-  const toggleLocale=()=>{
-    setLocale((locale)=>{
-      return(
-      locale==='en'? 'ar': 'en'
-    )})
-  }
+  const [product, setProduct]= useState('LapTop')
   return (
-    <LocalContext.Provider value={{locale, toggleLocale}}>
-      <Blog/>
-    </LocalContext.Provider>
+   
+      <ProductContext.Provider value={product}>
+        <div className='App'>
+      <h1>Hooks [useContext]</h1>
+      <Sidebar/>
+      <Widget/>
+      </div>
+      </ProductContext.Provider>
+    
   )
 }
 
