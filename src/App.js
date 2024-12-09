@@ -1,18 +1,16 @@
-import React, { useEffect, useRef } from 'react'
-import { useState } from 'react'
+import React from 'react'
+import { useRef } from 'react'
 function App() {
-  const [user, setUser]= useState('')
-  const refInput= useRef(null)
-  useEffect(()=>{
-    refInput.current.focus()
-    refInput.current.value=('hayet')
-  },[])
+  const firstname=useRef()
+  const age=useRef()
   return (
     <div>
-     <h1>Hooks [useRef]</h1>
-     <input  ref={refInput} type='text' onChange={(e)=>setUser(e.target.value)}/>
-     {user}
+      <input type='text' ref={firstname} /><br/>
+      <button onClick={()=>console.log(firstname.current.value)}>Print firstname</button><br/>
+      <input type='number' ref={age} /><br/>
+      <button onClick={()=>console.log(age.current.value)}>Print age</button>
     </div>
   )
-} 
+}
+
 export default App
