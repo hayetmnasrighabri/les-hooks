@@ -1,20 +1,34 @@
-import React, { createContext, useState } from 'react'
-import Sidebar from './components/Sidebar'
-import Widget from './components/Widget'
+import React from 'react'
+import { useRef } from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
-export const ProductContext=createContext()
 function App() {
-  const [product, setProduct]= useState('LapTop')
+  const[mohamed, setMohamed]=useState(0)
+  const[x,setX]=useState(0)
+  const r = useRef(null)
+  useEffect(()=>{
+    r.current.focus()
+  },[])
+  const plushandler=()=>{
+    setMohamed(mohamed+3)
+  }
+
+  const minsehandler=()=>{
+    setMohamed(mohamed-1)
+  }
   return (
-   
-      <ProductContext.Provider value={product}>
-        <div className='App'>
-      <h1>Hooks [useContext]</h1>
-      <Sidebar/>
-      <Widget/>
-      </div>
-      </ProductContext.Provider>
-    
+    <div className='App'>
+      <button onClick={plushandler}>+</button>
+      <button onClick={minsehandler}>-</button>
+      <button onClick={()=>setX(x+3)}>+</button>
+      <button onClick={()=>setX(x-3)}>-</button>
+      {mohamed}
+      {x}
+      <br/>
+      <br/>
+      <input ref={r} />
+    </div>
   )
 }
 
