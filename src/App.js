@@ -7,8 +7,8 @@ function App() {
   const[mohamed, setMohamed]=useState(0)
   const[x,setX]=useState(0)
   const r = useRef(null)
-  useEffect(()=>{
-    r.current.focus()
+  useEffect(()=>{ 
+    r.current.click()
   },[])
   const plushandler=()=>{
     setMohamed(mohamed+3)
@@ -19,7 +19,7 @@ function App() {
   }
   return (
     <div className='App'>
-      <button onClick={plushandler}>+</button>
+      <button  ref={r} onClick={plushandler}>+</button>
       <button onClick={minsehandler}>-</button>
       <button onClick={()=>setX(x+3)}>+</button>
       <button onClick={()=>setX(x-3)}>-</button>
@@ -27,7 +27,7 @@ function App() {
       {x}
       <br/>
       <br/>
-      <input ref={r} />
+      <input/>
     </div>
   )
 }
