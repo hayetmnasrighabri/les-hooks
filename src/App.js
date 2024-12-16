@@ -1,25 +1,24 @@
-import React from 'react'
-import { useRef } from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useState, useMemo } from 'react';
+import './App.css';
 
 function App() {
-    const [timer, setTimer]=useState(0)
-    const intervalRef= useRef(null)
-    useEffect(()=>{
-     intervalRef.current = setInterval(()=>{
-        setTimer(prevTimer => prevTimer + 1)
-     }, 1000)
-     return ()=>{
-        clearInterval(intervalRef.current)
-     }
-    },[])
+  const [mohamed, setMohamed] = useState(0);
+  const [ahmed, setAhmed] = useState(0);
+
+  const m = useMemo(() => {
+    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    return (
+      <div className='test' style={{ backgroundColor: randomColor }}></div>
+    );
+  }, [mohamed]);
+
   return (
-    <div>
-      <h1>timer-{timer}</h1>
-      <button onClick={()=>clearInterval(intervalRef.current)}>clear Timer</button>
+    <div className='App'>
+      {m}
+      <button onClick={() => setMohamed(mohamed + 1)}>mohamed</button>
+      <button onClick={() => setAhmed(ahmed + 1)}>ahmed</button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
