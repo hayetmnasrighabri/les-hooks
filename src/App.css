@@ -1,4 +1,13 @@
-.test{
-    width: 200px;
-    height: 200px;
+.app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.btn{
+    margin-right: 30px;
+}
+.red{
+color: red;
+font-size: 50px;
 }

@@ -1,24 +1,22 @@
-import React, { useState, useMemo } from 'react';
-import './App.css';
-
+import React from 'react'
+import { useState } from 'react'
+import "./App.css"
 function App() {
-  const [mohamed, setMohamed] = useState(0);
-  const [ahmed, setAhmed] = useState(0);
-
-  const m = useMemo(() => {
-    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    const [count, setCount]= useState(0)
+    const [isRed, setRed]= useState(false)
+    const handleClick=()=>{
+        setCount(count+1)
+        setRed(!isRed)
+    }
     return (
-      <div className='test' style={{ backgroundColor: randomColor }}></div>
-    );
-  }, [mohamed]);
-
-  return (
-    <div className='App'>
-      {m}
-      <button onClick={() => setMohamed(mohamed + 1)}>mohamed</button>
-      <button onClick={() => setAhmed(ahmed + 1)}>ahmed</button>
+    <div className='app'>
+      <button className='btn' onClick={handleClick}>
+        Increment
+        </button>
+      <h1>{count}</h1><hr/>
+      <h1 className={isRed? 'red': ""}>change My Color</h1>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
