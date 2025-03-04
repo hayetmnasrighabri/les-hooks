@@ -1,20 +1,27 @@
-import React from 'react'
-import { useState } from 'react'
-import "./App.css"
+import {React, useState} from 'react'
+
 function App() {
-    const [count, setCount]= useState(0)
-    const [isRed, setRed]= useState(false)
-    const handleClick=()=>{
-        setCount(count+1)
-        setRed(!isRed)
-    }
-    return (
-    <div className='app'>
-      <button className='btn' onClick={handleClick}>
-        Increment
-        </button>
-      <h1>{count}</h1><hr/>
-      <h1 className={isRed? 'red': ""}>change My Color</h1>
+  const [name, setName]=useState({
+    firstname:"",
+    lastname:"",
+  })
+
+  return (
+    <div>
+     <input 
+         type='text' 
+         placeholder='firstname'
+         value={name.firstname}
+         onChange={(e)=>setName({...name, firstname:e.target.value})}
+         /> 
+      <input 
+        type='text'
+        placeholder='lastname'
+        value={name.lastname}
+        onChange={(e)=>setName({...name, lastname: e.target.value})}
+      />
+      <h1>your firstname: {name.firstname}</h1>
+      <h1>your lastname: {name.lastname}</h1>
     </div>
   )
 }
