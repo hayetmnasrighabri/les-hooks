@@ -1,22 +1,23 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 function App() {
-  const [x, setX]= useState(0)
-  const [y, setY] = useState(0)
-  const loadMousePosition=(e)=>{
-    setX(e.clientX)
-    setY(e.clientY)
-  }
+  const [posts, setPosts]= useState([])
   useEffect(()=>{
-    console.log('useEffect called')
-    window.addEventListener('mousemove',loadMousePosition)
-  },[])
+    axios.get(`https://jsonplaceholder.typicode.com/posts`)
+    .then((response)=>{
+      setPosts(response.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })  
+  })
   return (
     <div>
-     <h1>X- {x}</h1>
-     <h1>Y- {y}</h1>  
+    <ul>
+      {posts.map((post)=>(
+        <li key={post.id}>{post.title}</li>
+      ))}
+      </ul>     
     </div>
   )
 }
