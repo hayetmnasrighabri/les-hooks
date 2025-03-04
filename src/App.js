@@ -1,24 +1,22 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 
 function App() {
-  const [items, setItems]= useState([])
-  const addItems=()=>{
-    setItems([
-      ...items, {
-        id: items.length, 
-        value: Math.floor(Math.random()* 10)+1,
-      }
-    ])
+  const [x, setX]= useState(0)
+  const [y, setY] = useState(0)
+  const loadMousePosition=(e)=>{
+    setX(e.clientX)
+    setY(e.clientY)
   }
+  useEffect(()=>{
+    console.log('useEffect called')
+    window.addEventListener('mousemove',loadMousePosition)
+  },[])
   return (
     <div>
-      <button onClick={addItems}>Add a Number</button>
-      <ul>
-        {items.map((item)=>(
-          <li key={item.id}>{item.value}</li>
-        ))}
-      </ul>
+     <h1>X- {x}</h1>
+     <h1>Y- {y}</h1>  
     </div>
   )
 }
