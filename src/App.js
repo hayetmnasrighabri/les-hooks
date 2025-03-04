@@ -1,27 +1,24 @@
-import {React, useState} from 'react'
+import React from 'react'
+import { useState } from 'react'
 
 function App() {
-  const [name, setName]=useState({
-    firstname:"",
-    lastname:"",
-  })
-
+  const [items, setItems]= useState([])
+  const addItems=()=>{
+    setItems([
+      ...items, {
+        id: items.length, 
+        value: Math.floor(Math.random()* 10)+1,
+      }
+    ])
+  }
   return (
     <div>
-     <input 
-         type='text' 
-         placeholder='firstname'
-         value={name.firstname}
-         onChange={(e)=>setName({...name, firstname:e.target.value})}
-         /> 
-      <input 
-        type='text'
-        placeholder='lastname'
-        value={name.lastname}
-        onChange={(e)=>setName({...name, lastname: e.target.value})}
-      />
-      <h1>your firstname: {name.firstname}</h1>
-      <h1>your lastname: {name.lastname}</h1>
+      <button onClick={addItems}>Add a Number</button>
+      <ul>
+        {items.map((item)=>(
+          <li key={item.id}>{item.value}</li>
+        ))}
+      </ul>
     </div>
   )
 }
