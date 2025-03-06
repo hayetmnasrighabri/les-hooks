@@ -1,17 +1,28 @@
 import React from 'react'
-import ComponentA from './components/ComponentA'
-import { createContext } from 'react'
-export const userContext = createContext()
-export const channelContext = createContext()
+import { useReducer } from 'react'
+
 function App() {
+  const initialValue=0
+  const reducer=(state, action)=>{
+    switch (action)
+    {
+      case 'plus':
+        return state+1
+      case 'minse':
+        return state-1
+      case 'reset':
+        return 0
+      default:
+        return state
+    }
+  }
+  const [state, dispatch]= useReducer(reducer, initialValue)
   return (
     <div>
-      <userContext.Provider value={"Hayet"}>
-        <channelContext.Provider value={"Simple Arab Code"}>
-              <ComponentA/>
-        </channelContext.Provider>
-      </userContext.Provider>
-      
+      <button onClick={()=>dispatch('plus')}>+</button>
+      <button onClick={()=>dispatch('minse')}>-</button>
+      <button onClick={()=>dispatch('reset')}>reset</button>
+      {state}
     </div>
   )
 }
