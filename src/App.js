@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React from 'react'
+import ComponentA from './components/ComponentA'
+import { createContext } from 'react'
+export const userContext = createContext()
+export const channelContext = createContext()
 function App() {
-  const [post, setPost]= useState({})
-  const [id, setId]= useState("")
-  useEffect(()=>{
-    axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
-    .then((response)=>{
-      setPost(response.data)
-    })
-    .catch((error)=>{
-      console.log(error)
-    })  
-  })
   return (
     <div>
-    <input type='text' value={id} onChange={(e)=>setId(e.target.value)}/>
-    <h1>{post.title}</h1>    
+      <userContext.Provider value={"Hayet"}>
+        <channelContext.Provider value={"Simple Arab Code"}>
+              <ComponentA/>
+        </channelContext.Provider>
+      </userContext.Provider>
+      
     </div>
   )
 }
