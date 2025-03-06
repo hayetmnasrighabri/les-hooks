@@ -1,28 +1,20 @@
 import React from 'react'
 import { useReducer } from 'react'
-
+import { initialValue } from './reducer'
+import { reducer } from './reducer'
 function App() {
-  const initialValue=0
-  const reducer=(state, action)=>{
-    switch (action)
-    {
-      case 'plus':
-        return state+1
-      case 'minse':
-        return state-1
-      case 'reset':
-        return 0
-      default:
-        return state
-    }
-  }
-  const [state, dispatch]= useReducer(reducer, initialValue)
+  const [countOne, dispatch]= useReducer(reducer, initialValue)
+  const [countTwo, dispatchTwo]= useReducer(reducer, initialValue)
   return (
     <div>
-      <button onClick={()=>dispatch('plus')}>+</button>
-      <button onClick={()=>dispatch('minse')}>-</button>
-      <button onClick={()=>dispatch('reset')}>reset</button>
-      {state}
+      {countOne}<br/>
+      <button onClick={()=>dispatch('increment')}>+</button>
+      <button onClick={()=>dispatch('decrement')}>-</button>
+      <button onClick={()=>dispatch('reset')}>reset</button><br/>
+      {countTwo}<br/>
+      <button onClick={()=>dispatchTwo('increment')}>+</button>
+      <button onClick={()=>dispatchTwo('decrement')}>-</button>
+      <button onClick={()=>dispatchTwo('reset')}>reset</button>
     </div>
   )
 }
