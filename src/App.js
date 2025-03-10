@@ -1,21 +1,35 @@
-import React, { createContext, useReducer } from 'react'
-import ComponentA from './components/ComponentA'
-import ComponentB from './components/ComponentB'
-import ComponentC from './components/ComponentC'
-import { reducer, initialState } from './reducer'
+import axios from 'axios'
+import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
- export const CountContext= createContext()
 function App() {
-  const [count, dipatch]= useReducer(reducer, initialState)
+  const [loading, setLoading]= useState(true)
+  const [error, setError]= useState("")
+  const [post, setPost]= useState({})
+  useEffect(()=>{
+    axios
+       .get(`https://jsonplaceholder.typicode.com/posts/1`)
+       .then((response)=> {
+        setLoading(false);
+        setError("");
+        setPost(response.data)
+       })
+       .catch((error)=>{
+        setLoading(false);
+        setError("something went wrong");
+        setPost({})
+       })
+  },[])
   return (
     <div>
-      <h1>count: {count}</h1>
-     <CountContext.Provider value={{countState: count, countDispatch: dipatch}}>
-      <ComponentA/>
-      <ComponentB/>
-      <ComponentC/>
-    </CountContext.Provider>
-     
+      {loading ? "Loading...": post.map((posts)=>(
+        <div key={posts.id}>
+          {posts.title}
+        </div>
+      ))}
+      {error ? error: null}
+
     </div>
   )
 }
