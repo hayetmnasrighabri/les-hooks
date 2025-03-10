@@ -1,11 +1,12 @@
-import {React, useContext} from 'react'
-import { userContext, channelContext } from '../App'
+import React, {useContext} from 'react'
+import { CountContext } from '../App'
 function ComponentC() {
-    const user=useContext(userContext)
-    const channel = useContext(channelContext)
+  const countContext= useContext(CountContext)
   return (
     <div>
-      <h1>My name is {user} channel is {channel} </h1>
+      <button onClick={()=>countContext.countDispatch("increment")}>Increment</button>
+      <button onClick={()=>countContext.countDispatch("decrement")}>Decrement</button>
+      <button onClick={()=>countContext.countDispatch("reset")}>Reset</button>
     </div>
   )
 }

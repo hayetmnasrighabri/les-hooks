@@ -1,4 +1,4 @@
- export const initialValue=0
+ export const initialState=0
   export const reducer=(state, action)=>{
     switch (action)
     {
@@ -7,7 +7,7 @@
       case 'decrement':
         return state-1
       case 'reset':
-        return 0
+        return initialState
       default:
         return state
     }
